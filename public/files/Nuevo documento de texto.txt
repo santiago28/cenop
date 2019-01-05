@@ -1,0 +1,7 @@
+- Municipio al editar
+- En la órden de produccón poner el encabezado
+Contacto - op - fecha atención
+- filtrar
+- Bottón eliminar para los archivos
+- Eliminar cita, hasta dos horas antes
+- En tabla cliente, poner numero de ingreso
