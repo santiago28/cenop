@@ -18,19 +18,27 @@ $("#AgregarCampos").click(function(e){
 });
 
 
-
+  var iter = 0;
 $("#AgregarCamposMateria").click(function(e){
   e.preventDefault();
   $("#materiaprima").append('<div class="fila col3e">'+
   '<div class="col2da"><input type="text" name="nombreMateria[]" class="form-control"><span style="font-weight: normal;"></span></div>' +
   '<div class="col2da"><input type="text" name="lote[]" class="form-control"><span style="font-weight: normal;"></span></div>' +
   '<div class="col2da"><input type="text" name="cantidad[]" class="form-control"><span style="font-weight: normal;"></span></div>' +
-  '<div class="col2da"><select type="text" name="responsable[]" class="form-control"><option value="10">Stick Darío Morales Cano</option><option value="11">José Alejandro Palma Gómez</option><option value="13">Carlos Alberto Pelaez Gómez</option></select></div>' +
+  '<div class="col2da"><select type="text" name="responsable[]" class="form-control actual'+iter+'"></select></div>' +
   '<div class="col2da"><input type="text" name="fechaMateria[]" class="form-control calendario"><span style="font-weight: normal;"></span></div>' +
   '<div class="col2da"><input type="text" name="serial[]" class="form-control"><span style="font-weight: normal;"></span></div>' +
   '<div class="col2da" style="width:11%;"><a href="#eliminar_elemento" rel="tooltip" title="Eliminar" class="material-icons eliminar_fila" style="color:#757575; text-decoration: none;" data-toggle = "modal">&#xE872;</a></div>' +
   '</div>'
 );
+$.get("/cenop/ordenproduccion/GetListaOrtopedistas", function(data){
+  var html = '';
+  $.each(data, function(index, value){
+    html += '<option value='+value.idOrtopedista+'>' + value.nombre + "</option>"
+  })
+  $('.actual'+iter).append(html);
+  iter++;
+});
 });
 
 

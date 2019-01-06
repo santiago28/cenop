@@ -113,6 +113,26 @@ class OrdenproduccionController extends ControllerBase
     $this->view->listaempresas = $listaempresas;
   }
 
+  public function GetListaOrtopedistasAction(){
+    $this->view->disable();
+
+    if ($this->request->isGet() == true && $this->request->isAjax() == true) {
+      $tecnicos = Ortopedista::find(array(
+        'tipoTecnico = 1'
+      ));
+      $rows = array();
+      foreach ($tecnicos as $key => $value) {
+        $tecnico = new Ortopedista;
+        $tecnico->idOrtopedista = $value->idOrtopedista;
+        $tecnico->nombre = $value->nombre.' '.$value->apellido;
+        array_push($rows, $tecnico);
+      }
+      $this->response->setJsonContent($rows);
+      $this->response->setStatusCode(200, "OK");
+      $this->response->send();
+    }
+  }
+
   /**
   * Searches for ordenproduccion
   */
@@ -243,7 +263,7 @@ class OrdenproduccionController extends ControllerBase
       ));
 
       $tecnicos = Ortopedista::find(array(
-        'idOrtopedista IN (10,11,13)'
+        'tipoTecnico = 1'
       ));
 
       $listatecnicos = array();

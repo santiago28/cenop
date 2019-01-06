@@ -107,9 +107,11 @@ class Paciente extends \Phalcon\Mvc\Model
   }
 
   public function getMunicipio(){
-    $idMunicipio = $this->idMunicipio;
-    $municipio = Municipio::findFirstByidMunicipio($idMunicipio);
-    return $municipio->nombre;
+    if ($this->idMunicipio != null) {
+      $idMunicipio = $this->idMunicipio;
+      $municipio = Municipio::findFirstByidMunicipio($idMunicipio);
+      return $municipio->nombre;
+    }
   }
 
   public function getTipoDocumento()

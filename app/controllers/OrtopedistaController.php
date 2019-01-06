@@ -228,10 +228,10 @@ class OrtopedistaController extends ControllerBase
     if($this->request->getPost("contrasena")){
       $usuario->contrasena = $this->security->hash($this->request->getPost("contrasena"));
       if (!$usuario->save()) {
-    		foreach ($usuario->getMessages() as $message) {
-    			$this->flash->error($message);
-    		}
-    	}
+        foreach ($usuario->getMessages() as $message) {
+          $this->flash->error($message);
+        }
+      }
     }
 
     if (!$ortopedista->save()) {

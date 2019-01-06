@@ -14,6 +14,7 @@
           <div style='width:70%;'><h3><center>CENOP ÓRTESIS & PRÓTESIS</certer></h3>
           </div>
           <div style="width:15%;">
+            <h4>OP: {{idOrden}}</h4>
             {{ text_field("codigo", "class" : "form-control","style": "height:25px; margin-top:2px;", "placeholder":"Código") }}
             {{ text_field("version", "class" : "form-control","style": "height:25px; margin-top:2px;", "placeholder":"Versión") }}
             {{ text_field("fecha", "class" : "form-control calendario","style": "height:25px; margin-top:2px;", "placeholder":"Fecha") }}

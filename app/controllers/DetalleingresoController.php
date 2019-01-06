@@ -134,6 +134,7 @@ class DetalleingresoController extends ControllerBase
       $this->view->estadosCalidad = $estadosCalidad;
       $this->view->detalleingreso = $detalleingreso;
       $this->view->idIngreso = $idIngreso;
+      $this->view->idOrden = $ingresomateria->idOrden;
       $this->tag->setDefault("codigo", $ingresomateria->codigo);
       $this->tag->setDefault("version", $ingresomateria->version);
       $this->tag->setDefault("fecha", $ingresomateria->fecha);

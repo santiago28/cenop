@@ -147,6 +147,9 @@ class SecurityPlugin extends Plugin
       ),
       'Consultaropxid' => array(
         'nivelPermiso' => '1'
+      ),
+      'GetListaOrtopedistas' => array(
+        'nivelPermiso' => '1'
       )
     ),
     'agenda' => array(
