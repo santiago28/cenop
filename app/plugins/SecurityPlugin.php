@@ -211,6 +211,46 @@ class SecurityPlugin extends Plugin
         'nivelPermiso' => '1'
       ),
     ),
+    'detalleactividad' => array(
+      'index' => array(
+        'nivelPermiso' => '1'
+      ),
+      'edit' => array(
+        'nivelPermiso' => '1'
+      ),
+      'save' => array(
+        'nivelPermiso' => '1'
+      ),
+      'new' => array(
+        'nivelPermiso' => '1'
+      ),
+      'create' => array(
+        'nivelPermiso' => '1'
+      ),
+      'BuscarDatosActividad' => array(
+        'nivelPermiso' => '1'
+      ),
+    ),
+    'valoracion' => array(
+      'index' => array(
+        'nivelPermiso' => '1'
+      ),
+      'edit' => array(
+        'nivelPermiso' => '1'
+      ),
+      'save' => array(
+        'nivelPermiso' => '1'
+      ),
+      'new' => array(
+        'nivelPermiso' => '1'
+      ),
+      'create' => array(
+        'nivelPermiso' => '1'
+      ),
+      'BuscarDatosValoracion' => array(
+        'nivelPermiso' => '1'
+      ),
+    ),
   );
 
 

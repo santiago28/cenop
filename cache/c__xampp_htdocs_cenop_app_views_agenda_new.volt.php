@@ -97,6 +97,15 @@
           <textarea name="motivo" class="form-control"></textarea>
         </div>
         <div class="form-group">
+          <label>Cliente</label>
+          <select id="idEmpresa" name="idEmpresa"  class="form-control">
+            <option value="0">No Remitente</option>
+            <?php foreach ($empresas as $empresa) { ?>
+            <option value="<?= $empresa->idEmpresa ?>"><?= $empresa->nombre ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="form-group">
           <button type="button" class="btn btn-primary col-md-12" id="BuscarTecnicos">Buscar Técnicos Disponibles</button>
         </div>
         <div class="form-group">

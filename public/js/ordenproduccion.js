@@ -65,7 +65,7 @@ $("#BuscarTecnicos").click(function(){
   var horaInicio = $("#txtHoraInicio").val();
   var horaFin = $("#txtHoraFin").val();
 
-  $.get("/agenda/ConsultarDisponibilidadTecnico", {"fechaCita": fechaCita, "horaInicio": horaInicio, "horaFin": horaFin},
+  $.get("/cenop/agenda/ConsultarDisponibilidadTecnico", {"fechaCita": fechaCita, "horaInicio": horaInicio, "horaFin": horaFin},
   function(ortopedista){
     $("#idOrtopedista").empty();
     var Datos = "";

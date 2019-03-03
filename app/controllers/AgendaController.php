@@ -118,6 +118,8 @@ class AgendaController extends ControllerBase
     // $this->assets->addJs("js/fullcalendar.js");
     $this->view->tipoUsuario = $this->user["tipoUsuario"];
     $this->assets->addJs("js/agenda.js");
+    $empresa = Empresa::find();
+    $this->view->empresas = $empresa;
     // $ortopedistas = Ortopedista::find();
     // $this->view->ortopedistas = $ortopedistas;
   }
@@ -176,7 +178,7 @@ class AgendaController extends ControllerBase
     $agenda->horaFin = $this->request->getPost("horaFin");
     $agenda->motivo = $this->request->getPost("motivo");
     $agenda->tipo = 1;
-
+    $agenda->idEmpresa = $this->request->getPost("idEmpresa");
 
 
     if (!$agenda->save()) {
@@ -370,12 +372,19 @@ class AgendaController extends ControllerBase
 
       }elseif ($this->user['tipoUsuario'] == "2") {
         $empresa = Empresa::findFirstByidUsuario($this->user['idUsuario']);
-        $citas = Agenda::find();
+        $parameters = array(
+          "idEmpresa" => $empresa->idEmpresa,
+        );
+        $citas = Agenda::find(array(
+          "idEmpresa = :idEmpresa:",
+          "bind" => $parameters
+        ));
       }else {
         $citas = Agenda::find();
       }
-
-
+      
+      
+      
       $rows = array();
       foreach ($citas as $cita) {
         $info = new AgendaDTO();
@@ -395,7 +404,12 @@ class AgendaController extends ControllerBase
         }
         $paciente = Paciente::findFirstByidPaciente($cita->idPaciente);
         $info->nombrePaciente = $paciente->nombre . " " . $paciente->apellido;
-
+        
+        if ($cita->idEmpresa != 0) {
+          $empresacita = Empresa::findFirstByidEmpresa($cita->idEmpresa);
+          $info->nombreEmpresa = $empresacita->nombre;          
+        }
+        
         $ortopedista = Ortopedista::findFirstByidOrtopedista($cita->idOrtopedista);
         $info->nombreOrtopedista = $ortopedista->nombre . " " . $ortopedista->apellido;
         array_push($rows,$info);

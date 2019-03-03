@@ -121,6 +121,7 @@ class DetalleingresoController extends ControllerBase
       ));
 
       $ingresomateria = Ingresomateria::findFirstByidIngreso($idIngreso);
+      $ordenproduccion = Ordenproduccion::findFirstByidOrden($ingresomateria->idOrden);
 
       //Estados calidad
       $estadosCalidad = array(
@@ -131,6 +132,7 @@ class DetalleingresoController extends ControllerBase
         '5' => 'Retenido'
       );
 
+      $this->view->op = $ordenproduccion->op;
       $this->view->estadosCalidad = $estadosCalidad;
       $this->view->detalleingreso = $detalleingreso;
       $this->view->idIngreso = $idIngreso;

@@ -7,7 +7,7 @@
       </div>
       <div class="panel-body">
         <?= $this->getContent() ?>
-        <div class="table-responsive col-md-10" style="border-radius: 5px;width: 100%;margin: 0px auto; float: none;">
+        <div class="table-responsive col-md-12">
           <table class="table table-bordered" id="mytable">
             <thead>
               <tr>
@@ -19,9 +19,6 @@
                 <th>Celular</th>
                 <th>Municipio</th>
                 <th>Dirección</th>
-                <th>Edad</th>
-                <th>Estatura</th>
-                <th>Peso</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -38,10 +35,6 @@
                 <td><?= $paciente->celular ?></td>
                 <td><?= $paciente->getMunicipio() ?></td>
                 <td><?= $paciente->direccion ?></td>
-                <td><?= $paciente->edad ?></td>
-                <td><?= $paciente->estatura ?></td>
-                <td><?= $paciente->peso ?></td>
-
                 <td><?= $this->tag->linkTo(['paciente/edit/' . $paciente->idPaciente, '&#xE254;', 'class' => 'material-icons', 'style' => 'color:#757575; text-decoration: none;']) ?></td>
                 <td><?= $this->tag->linkTo(['paciente/delete/' . $paciente->idPaciente, '&#xE872;', 'class' => 'material-icons', 'style' => 'color:#757575; text-decoration: none;']) ?></td>
               </tr>

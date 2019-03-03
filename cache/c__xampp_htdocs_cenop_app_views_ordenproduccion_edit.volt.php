@@ -25,6 +25,8 @@
           <?= $this->tag->hiddenField(['idPaciente']) ?>
           <?= $this->tag->hiddenField(['idOrden']) ?>
           <?= $this->tag->hiddenField(['tipoTecnico']) ?>
+          <?= $this->tag->hiddenField(['idEmpresa']) ?>
+          <div id="clock">OP: &nbsp;<?= $op ?></div>
           <div id="imprimir">
             <div class='seccion encabezado'>
               <div class="fila col3">
@@ -288,7 +290,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[0]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[0]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[0]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="medidas">
                 <div class='col2da' style="width:38%;">MEDIDAS<span style='font-weight: normal;'></span></div>
@@ -317,7 +319,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[1]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[1]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[1]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="positivo">
                 <div class='col2da' style="width:38%;">POSITIVO<span style='font-weight: normal;'></span></div>
@@ -346,7 +348,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[2]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[2]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[2]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="plastificado">
                 <div class='col2da' style="width:38%;">PLASTIFICADO<span style='font-weight: normal;'></span></div>
@@ -375,7 +377,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[3]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[3]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[3]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="montaje">
                 <div class='col2da' style="width:38%;">MONTAJE<span style='font-weight: normal;'></span></div>
@@ -404,7 +406,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[4]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[4]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[4]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="prueba1">
                 <div class='col2da' style="width:38%;">PRUEBA - 1<span style='font-weight: normal;'></span></div>
@@ -433,7 +435,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[5]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[5]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[5]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="prueba2">
                 <div class='col2da' style="width:38%;">PRUEBA - 2<span style='font-weight: normal;'></span></div>
@@ -462,7 +464,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[6]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[6]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[6]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="laminado">
                 <div class='col2da' style="width:38%;">LAMINADO<span style='font-weight: normal;'></span></div>
@@ -491,7 +493,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[7]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[7]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[7]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="solicitudComponente">
                 <div class='col2da' style="width:38%;">SOLICITUD DE COMPONENTES</div>
@@ -520,7 +522,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[8]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[8]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[8]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="ingresoComponentes">
                 <div class='col2da' style="width:38%;">INGRESO DE COMPONENTES<span style='font-weight: normal;'></span></div>
@@ -549,9 +551,9 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[9]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[9]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[9]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="ordenCompra">
+              <div class='fila col3e' id="ordenCompra" style="display: none;">
                 <div class='col2da' style="width:38%;">ÓRDEN DE COMPRA<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -578,9 +580,9 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[10]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[10]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[10]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="ordenServicios">
+              <div class='fila col3e' id="ordenServicios" style="display: none;">
                 <div class='col2da' style="width:38%;">ÓRDEN DE SERVICIO<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -607,9 +609,9 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[11]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[11]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[11]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="autorizacionServicioL">
+              <div class='fila col3e' id="autorizacionServicioL" style="display: none;">
                 <div class='col2da' style="width:38%;">AUTORIZACIÓN DE SERVICIO<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -636,9 +638,9 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[12]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[12]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[12]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="cotizacionEnviada">
+              <div class='fila col3e' id="cotizacionEnviada" style="display: none;">
                 <div class='col2da' style="width:38%;">COTIZACIÓN ENVIADA<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -665,7 +667,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[13]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[13]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[13]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class='fila col3e' id="entregado">
                 <div class='col2da' style="width:38%;">ENTREGADO<span style='font-weight: normal;'></span></div>
@@ -694,7 +696,7 @@
                   </div>
                 </div>
                 <div class='col2da'><input type="text" name="fechaProceso[14]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
-                <div class='col2da'><input type="text" name="responsableSeguimiento[14]"  class="form-control tipotecnico"><span style='font-weight: normal;'></span></div>
+                <div class='col2da'><input type="text" name="responsableSeguimiento[14]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
               <div class="clear"></div>
             </div>
@@ -866,6 +868,7 @@
           <label>Técnico Entrenador</label>
           <?= $this->tag->hiddenField(['idPaciente']) ?>
           <?= $this->tag->hiddenField(['idOrden']) ?>
+          <?= $this->tag->hiddenField(['idEmpresa']) ?>
           <select id="idOrtopedistaOrden" name="idOrtopedistaOrden"  class="form-control tipotecnico">
 
           </select>
@@ -1014,27 +1017,27 @@ function MostrarImagen (id)
 
   var urlimagen = "";
   if (id == 1) {
-    urlimagen = "/cenop/img/OrtesisCalzado.png";
+    urlimagen = "/img/OrtesisCalzado.png";
   }else if (id == 2) {
-    urlimagen = "/cenop/img/OrtesisColumna.png";
+    urlimagen = "/img/OrtesisColumna.png";
   }else if (id == 3) {
-    urlimagen = "/cenop/img/OrtesisFerulaMilgran.png";
+    urlimagen = "/img/OrtesisFerulaMilgran.png";
   }else if (id ==  4) {
-    urlimagen = "/cenop/img/OrtesisMiembroInferior.png";
+    urlimagen = "/img/OrtesisMiembroInferior.png";
   }else if (id == 5) {
-    urlimagen = "/cenop/img/OrtesisMiembroSuperior.png";
+    urlimagen = "/img/OrtesisMiembroSuperior.png";
   }else if (id == 6) {
-    urlimagen = "/cenop/img/OrtesisSedentacion.png";
+    urlimagen = "/img/OrtesisSedentacion.png";
   }else if (id == 7) {
-    urlimagen = "/cenop/img/ProtesisMiembroInferiorTransfemoral.png";
+    urlimagen = "/img/ProtesisMiembroInferiorTransfemoral.png";
   }else if (id == 8) {
-    urlimagen = "/cenop/img/ProtesisMiembroInferiorTranstibial.png";
+    urlimagen = "/img/ProtesisMiembroInferiorTranstibial.png";
   }else if(id == 9) {
-    urlimagen = "/cenop/img/ProtesisMiembroSuperior.png";
+    urlimagen = "/img/ProtesisMiembroSuperior.png";
   }else if(id == 10) {
-    urlimagen = "/cenop/img/OrtesisPlantilla.png";
+    urlimagen = "/img/OrtesisPlantilla.png";
   }else if(id == 11) {
-    urlimagen = "/cenop/img/OrtesisInsumo.png";
+    urlimagen = "/img/OrtesisInsumo.png";
   }else {
     urlimagen = "";
   }

@@ -267,6 +267,7 @@ class OrdenproduccionController extends ControllerBase
       ));
 
       $listatecnicos = array();
+      $listatecnicos[0] = "";
       foreach ($tecnicos as $key => $value) {
         $listatecnicos[$value->idOrtopedista] = $value->nombre.' '.$value->apellido;
       }
@@ -421,6 +422,25 @@ class OrdenproduccionController extends ControllerBase
         '".$fechaActual."')"
       );
 
+      $sqlingresoactividad = $this->db->query("INSERT INTO actividad
+        (
+          idOrden,
+          fecha
+        )
+        VALUES
+        ('".$ordenproduccion->idOrden."',
+          '".$fechaActual."')"
+      );
+
+      $sqlvaloracion = $this->db->query("INSERT INTO valoracion
+        (
+          idOrden,
+          fechaversion
+        )
+        VALUES
+        ('".$ordenproduccion->idOrden."',
+          '".$fechaActual."')"
+      );
       // $lastId = $this->db->lastInsertId();
       // $sqldetalleingreso = $this->db->query("INSERT INTO detalleingreso(idIngreso)VALUES('".$lastId."')");
 
@@ -784,6 +804,7 @@ class OrdenproduccionController extends ControllerBase
                                     $agenda->horaFin = $this->request->getPost("horaFin");
                                     $agenda->motivo = $this->request->getPost("motivo");
                                     $agenda->tipo = 2;
+                                    $agenda->idEmpresa = $this->request->getPost("idEmpresa");
 
 
                                     if (!$agenda->save()) {

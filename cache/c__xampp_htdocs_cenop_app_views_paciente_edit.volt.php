@@ -72,68 +72,94 @@
               <label for="fieldNombre" class="">Departamento</label>
               <div>
                 
-                <?= $this->tag->select(['idDepartamento', $departamentos, 'class' => 'form-control']) ?>
-              </div>
+              <?= $this->tag->select(['idDepartamento', $departamentos, 'class' => 'form-control']) ?>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group col-md-12">
-              <label for="fieldApellido">Municipio</label>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label for="fieldApellido">Municipio</label>
             <?= $this->tag->select(['idMunicipio', $municipios, 'class' => 'form-control']) ?>
+          </div>
+        </div>
+      </div>
+      <div style="list-style:none; width:100%" class="col-md-12">
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label for="fieldNombre" class="">Dirección</label>
+            <div>
+              <?= $this->tag->textField(['direccion', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldDireccion']) ?>
             </div>
           </div>
         </div>
-        <div style="list-style:none; width:100%" class="col-md-12">
-          <div class="col-md-6">
-            <div class="form-group col-md-12">
-              <label for="fieldNombre" class="">Dirección</label>
-              <div>
-                <?= $this->tag->textField(['direccion', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldDireccion']) ?>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group col-md-12">
-              <label for="fieldApellido">Edad</label>
-              <div>
-                <?= $this->tag->textField(['edad', 'type' => 'numeric', 'class' => 'form-control', 'id' => 'fieldEdad']) ?>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="list-style:none; width:100%" class="col-md-12">
-          <div class="col-md-6">
-            <div class="form-group col-md-12">
-              <label for="fieldNombre" class="">Estatura</label>
-              <div>
-                <?= $this->tag->textField(['estatura', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldEstatura']) ?>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group col-md-12">
-              <label for="fieldApellido">Peso</label>
-              <div>
-                <?= $this->tag->textField(['peso', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldPeso']) ?>
-              </div>
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label for="fieldApellido">Edad</label>
+            <div>
+              <?= $this->tag->textField(['edad', 'type' => 'numeric', 'class' => 'form-control', 'id' => 'fieldEdad']) ?>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel-footer">
-        <div class="form-group" style="overflow:hidden;text-align:right; padding-right:60px;">
-          <div class="col-sm-offset-2 col-sm-10">
-            <?= $this->tag->linkTo(['paciente/', 'Consultar', 'class' => 'btn btn-primary']) ?>
-            <?= $this->tag->submitButton(['Guardar', 'class' => 'btn btn-primary']) ?>
+      <div style="list-style:none; width:100%" class="col-md-12">
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label for="fieldNombre" class="">Estatura</label>
+            <div>
+              <?= $this->tag->textField(['estatura', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldEstatura']) ?>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label for="fieldApellido">Peso</label>
+            <div>
+              <?= $this->tag->textField(['peso', 'size' => 30, 'class' => 'form-control', 'id' => 'fieldPeso']) ?>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group col-md-12">
+            <label>Firma</label>
+            <div class="input-group">
+              <?= $this->tag->textField(['firma', 'class' => 'form-control', 'id' => 'fieldFirma']) ?>
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="AgregarFirma">Agregar Firma</button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </form>
+    <div class="panel-footer">
+      <div class="form-group" style="overflow:hidden;text-align:right; padding-right:60px;">
+        <div class="col-sm-offset-2 col-sm-10">
+          <?= $this->tag->linkTo(['paciente/', 'Consultar', 'class' => 'btn btn-primary']) ?>
+          <?= $this->tag->submitButton(['Guardar', 'class' => 'btn btn-primary']) ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 </div>
 </div>
 
-
+<div id="ModalFirma" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:90%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Agregar Firma</h4>
+      </div>
+      <div class="modal-body">
+        <div class="contenedor-firma">
+          <canvas id="canvas" oncontextmenu="WILL.clear(); event.preventDefault();"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?= $this->assets->outputJs() ?>
 <script type="text/javascript">
 $("#idDepartamento").change(function(){
   var Departamento = $("#idDepartamento option:selected").attr("value");
@@ -147,5 +173,9 @@ $("#idDepartamento").change(function(){
     });
     $('#idMunicipio').html(municipios);
   });
+});
+
+$("#AgregarFirma").click(function(){
+  $("#ModalFirma").modal("show");
 });
 </script>

@@ -46,5 +46,7 @@ class AgendaDTO {
   public $nombrePaciente;
 
   public $nombreOrtopedista;
+  
+  public $nombreEmpresa;
 }
  ?>

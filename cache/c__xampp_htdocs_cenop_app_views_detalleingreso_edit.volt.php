@@ -5,6 +5,7 @@
     <?= $this->tag->form(['detalleingreso/save', 'method' => 'post', 'autocomplete' => 'off', 'class' => 'form-horizontal']) ?>
     <br>
     <?= $this->tag->hiddenField(['idIngreso']) ?>
+    <div id="clock">OP: &nbsp;<?= $op ?></div>
     <div id="imprimir">
       <div class="seccion encabezado">
 
@@ -14,6 +15,7 @@
           <div style='width:70%;'><h3><center>CENOP ÓRTESIS & PRÓTESIS</certer></h3>
           </div>
           <div style="width:15%;">
+            <h4>OP: <?= $op ?></h4>
             <?= $this->tag->textField(['codigo', 'class' => 'form-control', 'style' => 'height:25px; margin-top:2px;', 'placeholder' => 'Código']) ?>
             <?= $this->tag->textField(['version', 'class' => 'form-control', 'style' => 'height:25px; margin-top:2px;', 'placeholder' => 'Versión']) ?>
             <?= $this->tag->textField(['fecha', 'class' => 'form-control calendario', 'style' => 'height:25px; margin-top:2px;', 'placeholder' => 'Fecha']) ?>
@@ -29,7 +31,7 @@
             <div><span class="titulo">LOTE DEL FABRICANTE</span><input class="form-control" name="lote[]" value="<?= $detalle->lote ?>" /></div>
             <div><span class="titulo">ESTADO DE CALIDAD DEL PRODUCTO</span><?= $this->tag->select(['estadoCalidad[]', $estadosCalidad, 'class' => 'form-control', 'value' => $detalle->estadoCalidad]) ?></div>
             <div><span class="titulo">FECHA  DE CADUCIDAD</span><input class="form-control" name="fechaCaducidad[]" value="<?= $detalle->fechaCaducidad ?>" /></div>
-            <div><span class="titulo">N/A</span><input class="form-control" name="na[]" value="<?= $detalle->na ?>" /></div>
+            <div><span class="titulo">VB DIRECTOR TÉCNICO</span><input class="form-control" name="na[]" value="<?= $detalle->na ?>" /></div>
             <div style="width:5%;"><button class="btn btn-default glyphicon glyphicon-trash" onclick="eliminaringreso(<?= $detalle->idDetalle ?>); return false;"></div>
           </div>
           <div class="fila col3 fil<?= $detalle->idDetalle ?>">

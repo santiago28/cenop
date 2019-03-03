@@ -135,6 +135,12 @@ class PacienteController extends ControllerBase
       $this->tag->setDefault("idDepartamento", $municipio->idDepartamento);
       $this->view->departamentos = $departamentos2;
       $this->view->municipios = $municipios2;
+      // $this->assets->addJs("js/Module.js");
+      // $this->assets->addJs("jsWacomInkEngine.js.mem");
+      // $this->assets->addJs("js/WacomInkEngine.js");
+
+      $this->assets->addJs("js/js.ext.js");
+      $this->assets->addJs("js/wacomfirma.js");
     }
   }
 

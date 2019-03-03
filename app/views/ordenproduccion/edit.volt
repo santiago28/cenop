@@ -25,6 +25,8 @@
           {{ hidden_field("idPaciente") }}
           {{ hidden_field("idOrden") }}
           {{ hidden_field("tipoTecnico") }}
+          {{ hidden_field("idEmpresa") }}
+          <div id="clock">OP: &nbsp;{{op}}</div>
           <div id="imprimir">
             <div class='seccion encabezado'>
               <div class="fila col3">
@@ -551,7 +553,7 @@
                 <div class='col2da'><input type="text" name="fechaProceso[9]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
                 <div class='col2da'><input type="text" name="responsableSeguimiento[9]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="ordenCompra">
+              <div class='fila col3e' id="ordenCompra" style="display: none;">
                 <div class='col2da' style="width:38%;">ÓRDEN DE COMPRA<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -580,7 +582,7 @@
                 <div class='col2da'><input type="text" name="fechaProceso[10]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
                 <div class='col2da'><input type="text" name="responsableSeguimiento[10]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="ordenServicios">
+              <div class='fila col3e' id="ordenServicios" style="display: none;">
                 <div class='col2da' style="width:38%;">ÓRDEN DE SERVICIO<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -609,7 +611,7 @@
                 <div class='col2da'><input type="text" name="fechaProceso[11]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
                 <div class='col2da'><input type="text" name="responsableSeguimiento[11]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="autorizacionServicioL">
+              <div class='fila col3e' id="autorizacionServicioL" style="display: none;">
                 <div class='col2da' style="width:38%;">AUTORIZACIÓN DE SERVICIO<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -638,7 +640,7 @@
                 <div class='col2da'><input type="text" name="fechaProceso[12]" class="form-control tipotecnico calendario"><span style='font-weight: normal;'></span></div>
                 <div class='col2da'><input type="text" name="responsableSeguimiento[12]"  class="form-control tipotecnico responsable"><span style='font-weight: normal;'></span></div>
               </div>
-              <div class='fila col3e' id="cotizacionEnviada">
+              <div class='fila col3e' id="cotizacionEnviada" style="display: none;">
                 <div class='col2da' style="width:38%;">COTIZACIÓN ENVIADA<span style='font-weight: normal;'></span></div>
                 <div class='col2da'>
                   <div class="checkbox">
@@ -866,6 +868,7 @@
           <label>Técnico Entrenador</label>
           {{ hidden_field("idPaciente") }}
           {{ hidden_field("idOrden") }}
+          {{ hidden_field("idEmpresa") }}
           <select id="idOrtopedistaOrden" name="idOrtopedistaOrden"  class="form-control tipotecnico">
 
           </select>
@@ -1025,27 +1028,27 @@ function MostrarImagen (id)
 
   var urlimagen = "";
   if (id == 1) {
-    urlimagen = "/cenop/img/OrtesisCalzado.png";
+    urlimagen = "/img/OrtesisCalzado.png";
   }else if (id == 2) {
-    urlimagen = "/cenop/img/OrtesisColumna.png";
+    urlimagen = "/img/OrtesisColumna.png";
   }else if (id == 3) {
-    urlimagen = "/cenop/img/OrtesisFerulaMilgran.png";
+    urlimagen = "/img/OrtesisFerulaMilgran.png";
   }else if (id ==  4) {
-    urlimagen = "/cenop/img/OrtesisMiembroInferior.png";
+    urlimagen = "/img/OrtesisMiembroInferior.png";
   }else if (id == 5) {
-    urlimagen = "/cenop/img/OrtesisMiembroSuperior.png";
+    urlimagen = "/img/OrtesisMiembroSuperior.png";
   }else if (id == 6) {
-    urlimagen = "/cenop/img/OrtesisSedentacion.png";
+    urlimagen = "/img/OrtesisSedentacion.png";
   }else if (id == 7) {
-    urlimagen = "/cenop/img/ProtesisMiembroInferiorTransfemoral.png";
+    urlimagen = "/img/ProtesisMiembroInferiorTransfemoral.png";
   }else if (id == 8) {
-    urlimagen = "/cenop/img/ProtesisMiembroInferiorTranstibial.png";
+    urlimagen = "/img/ProtesisMiembroInferiorTranstibial.png";
   }else if(id == 9) {
-    urlimagen = "/cenop/img/ProtesisMiembroSuperior.png";
+    urlimagen = "/img/ProtesisMiembroSuperior.png";
   }else if(id == 10) {
-    urlimagen = "/cenop/img/OrtesisPlantilla.png";
+    urlimagen = "/img/OrtesisPlantilla.png";
   }else if(id == 11) {
-    urlimagen = "/cenop/img/OrtesisInsumo.png";
+    urlimagen = "/img/OrtesisInsumo.png";
   }else {
     urlimagen = "";
   }

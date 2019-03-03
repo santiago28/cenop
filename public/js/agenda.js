@@ -8,7 +8,7 @@ var InfoCita = {
 };
 
 $("#AbrirModalEliminar").click(function(){
-  $.get("/cenop/agenda/ConsultarCitasEliminar",
+  $.get("/agenda/ConsultarCitasEliminar",
   function(citas){
 
     $("#ModalEliminarCitas").modal("show");
@@ -23,7 +23,7 @@ $("#AbrirModalEliminar").click(function(){
 
 $("#EliminarCita").click(function(){
   var idCita = $("#idCitas").val();
-  $.get("/cenop/agenda/EliminarCita",{"idAgenda": idCita},
+  $.get("/agenda/EliminarCita",{"idAgenda": idCita},
   function(resp){
     if (resp == "OK") {
       location.reload();
@@ -71,9 +71,9 @@ $(document).ready(function(){
   //   {"Nombre": "Prueba 2", "FechaActividad": "2018-02-25", "HoraInicio": "14:00", "HoraFin":"15:00", "ortopedista": "Carlos Peláez", "Paciente": "Ignacio", "color": "blue"},
   // ];
 
-  $.get("/cenop/agenda/ConsultarTodasCitas",
+  $.get("/agenda/ConsultarTodasCitas",
   function(Agenda){
-
+    console.log(Agenda);
     $.each(Agenda, function(index, value){
       var Inicio = value.fechaCita.split('-');
       var Fin = value.fechaCita.split('-');
@@ -82,12 +82,13 @@ $(document).ready(function(){
       var color =  "green";
 
       Events.push({
-        title: value.nombreOrtopedista,
+        title: value.nombrePaciente,
         start: new Date(parseInt(Inicio[0]), parseInt(Inicio[1]) - 1, parseInt(Inicio[2].substring(0, 2)), parseInt(HoraInicio[0]), parseInt(HoraInicio[1])),
         end: new Date(parseInt(Fin[0]), parseInt(Fin[1]) - 1, parseInt(Fin[2].substring(0, 2)), parseInt(HoraFin[0]), parseInt(HoraFin[1])),
         allDay: false,
         color: color,
-        tip: "OP: " + value.op + " - " + value.nombrePaciente + " - Motivo: "+ value.motivo
+        tip: "OP: " + value.op + " - " + value.nombrePaciente + " - Motivo: "+ value.motivo,
+        description: '<strong>Técnico:</strong>' + value.nombreOrtopedista + '<br><strong>Paciente:</strong> ' + value.nombrePaciente + '<br><strong>Fecha:</strong> ' + value.fechaCita.split('T')[0] + '<br><strong>Hora:</strong> ' + value.horaInicio + '<br><strong>Motivo:</strong> ' + value.motivo + '<br><strong>Cliente:</strong>' + value.nombreEmpresa
       })
 
     });
@@ -109,6 +110,13 @@ $(document).ready(function(){
       events: Events,
       eventRender: function (event, element) {
         element.attr('title', event.tip);
+        element.attr('href', 'javascript:void(0);');
+        element.click(function () {
+          bootbox.alert({
+            message: event.description,
+            title: "Cita",
+          });
+        });
       },
       editable: false,
       firstDay: 1,
@@ -182,7 +190,7 @@ $("#BuscarTecnicos").click(function(){
   var horaInicio = $("#txtHoraInicio").val();
   var horaFin = $("#txtHoraFin").val();
 
-  $.get("/cenop/agenda/ConsultarDisponibilidadTecnico", {"fechaCita": fechaCita, "horaInicio": horaInicio, "horaFin": horaFin},
+  $.get("/agenda/ConsultarDisponibilidadTecnico", {"fechaCita": fechaCita, "horaInicio": horaInicio, "horaFin": horaFin},
   function(ortopedista){
     $("#idOrtopedista").empty();
     var Datos = "";
@@ -196,7 +204,7 @@ $("#BuscarTecnicos").click(function(){
 
 $("#BuscarPaciente").click(function(){
   var DocumentoPaciente = $("#txtDocumentoPaciente").val();
-  $.get("/cenop/ordenproduccion/BuscarPaciente", {"numeroDocumento": DocumentoPaciente},
+  $.get("/ordenproduccion/BuscarPaciente", {"numeroDocumento": DocumentoPaciente},
   function(Paciente){
 
     if (Paciente != null) {

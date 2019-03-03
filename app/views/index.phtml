@@ -33,8 +33,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.4.5/alasql.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.12/xlsx.core.min.js"></script>
-
-
   <div class="container" style="width:100%;padding-top: 35px;">
     <?php echo $this->getContent(); ?>
   </div>
@@ -66,7 +64,7 @@
           <i class="material-icons">&#xE862;</i>
           <span><?php echo $this->tag->linkTo("empresa/index", "Cliente") ?></span>
         </div>
-        <div class="item-menu not-emp">
+        <div class="item-menu">
           <i class="material-icons">&#xE8D3;</i>
           <span><?php echo $this->tag->linkTo("agenda/new", "Agenda Citas") ?></span>
         </div>
@@ -78,9 +76,17 @@
           <i class="material-icons">&#xE8D3;</i>
           <span><?php echo $this->tag->linkTo("detalleingreso/index", "Ingreso Materia Prima") ?></span>
         </div>
+        <div class="item-menu not-paci not-emp">
+          <i class="material-icons">&#xE8D3;</i>
+          <span><?php echo $this->tag->linkTo("detalleactividad/index", "Actividades del usuario") ?></span>
+        </div>
+        <div class="item-menu not-paci not-emp">
+          <i class="material-icons">&#xE8D3;</i>
+          <span><?php echo $this->tag->linkTo("valoracion/index", "Valoración integral") ?></span>
+        </div>
         <div class="footer-menu-principal">
           <div><i class="material-icons" title="Editar información">&#xE88E;</i></div>
-          <div><a class="material-icons" href="/cenop/session/end">&#xE8AC;</a></div>
+          <div><a class="material-icons" href="/session/end">&#xE8AC;</a></div>
           <!--<div><i class="material-icons">&#xE869;</i></div>-->
         </div>
       </div>
