@@ -6,6 +6,7 @@
     <br>
     {{ hidden_field("idActividad") }}
     {{ hidden_field("idOrden") }}
+    {{ hidden_field("idPaciente") }}
     <div id="imprimir">
       <div class="seccion encabezado">
         <div class='fila col3'>
@@ -97,7 +98,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma1 != "" %}
+            <img src="{{firma1}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(1);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class='fila center'><div style="margin-left:45%;">2. ADAPTACIÓN DEL DISPOSITIVO</div></div>
         <div class='fila col3e'>
@@ -246,7 +253,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma2 != "" %}
+            <img src="{{firma2}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(2);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class='fila center'><div style="margin-left:45%;">3. VERIFICACIÓN</div></div>
         <div class='fila col3e'>
@@ -351,7 +364,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma3 != "" %}
+            <img src="{{firma3}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(3);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class='fila center'><div style="margin-left:45%;">4. ENTRENAMIENTO</div></div>
         <div class='fila col3e'>
@@ -456,7 +475,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma4 != "" %}
+            <img src="{{firma4}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(4);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class='fila center'><div style="margin-left:45%;">5. ENTREGA</div></div>
         <div class='fila col3e'>
@@ -539,7 +564,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma5 != "" %}
+            <img src="{{firma5}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(5);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class='fila center'><div style="margin-left:45%;">6. POST ADAPTACIÓN</div></div>
         <div class='fila col3e'>
@@ -644,7 +675,13 @@
         <div class='fila col3'>
           <div>.</div>
           <div>.</div>
-          <div>.</div>
+          <div>
+            {% if firma6 != "" %}
+            <img src="{{firma6}}" class="col-md-6">
+            {% else %}
+            <button type="button" name="button" class="btn btn-primary btn-sm" onclick="AgregarFirma(6);">Agregar Firma</button>
+            {% endif %}
+          </div>
         </div>
         <div class="clear"></div>
       </div>
@@ -675,7 +712,6 @@ $.get("<?php echo $this->url->get('Detalleactividad/BuscarDatosActividad'); ?>/"
 setTimeout(function(){
   var idOrden = $("#idOrden").val();
   $.get("<?php echo $this->url->get('Ordenproduccion/BuscarDatosOrden'); ?>/", { "idOrden": idOrden}, function(data){
-    console.log(data);
     var paciente = data[3];
     $("#txtNombre").text(paciente.nombre);
     $("#txtApellido").text(paciente.apellido);
@@ -687,4 +723,16 @@ setTimeout(function(){
     $("#txtMunicipio").text(paciente.nombreMunicipio);
   });
 },500);
+
+function AgregarFirma(numero){
+  var idPaciente = $("#idPaciente").val();
+  var idActividad = $("#idActividad").val();
+  $.post("<?php echo $this->url->get('Detalleactividad/GuardarFirma'); ?>/", { "idPaciente": idPaciente, "numero": numero, "idActividad": idActividad }, function(data){
+    console.log(data);
+    if (data=="OK") {
+      location.reload();
+    }
+  });
+}
+
 </script>

@@ -97,6 +97,8 @@ class Paciente extends \Phalcon\Mvc\Model
   */
   public $idUsuario;
 
+  public $firma;
+
   /**
   * Initialize method for model.
   */

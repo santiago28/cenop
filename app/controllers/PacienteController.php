@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
@@ -75,6 +75,7 @@ class PacienteController extends ControllerBase
   {
     $departamentos = Departamento::find();
     $this->view->departamentos = $departamentos;
+    $this->assets->addJs("js/paciente.js");
   }
 
   /**
@@ -135,12 +136,11 @@ class PacienteController extends ControllerBase
       $this->tag->setDefault("idDepartamento", $municipio->idDepartamento);
       $this->view->departamentos = $departamentos2;
       $this->view->municipios = $municipios2;
-      // $this->assets->addJs("js/Module.js");
+      $this->view->firma = $paciente->firma;
+      $this->assets->addJs("js/paciente.js");
       // $this->assets->addJs("jsWacomInkEngine.js.mem");
       // $this->assets->addJs("js/WacomInkEngine.js");
 
-      $this->assets->addJs("js/js.ext.js");
-      $this->assets->addJs("js/wacomfirma.js");
     }
   }
 
@@ -170,6 +170,7 @@ class PacienteController extends ControllerBase
     $paciente->edad = $this->request->getPost("edad");
     $paciente->estatura = $this->request->getPost("estatura");
     $paciente->peso = $this->request->getPost("peso");
+    $paciente->firma = $this->request->getPost("codfirma");
     $password = $this->security->hash($this->request->getPost("numeroDocumento"));
     $sql = $this->db->query("INSERT INTO usuario (nombreUsuario, contrasena, correo, tipoUsuario, estado) VALUES ('".$paciente->numeroDocumento."','".$password."', 's@s.com', 3, 1)");
     $lastId = $this->db->lastInsertId();
@@ -325,4 +326,19 @@ class PacienteController extends ControllerBase
     }
   }
 
+  public function cargarFirmaAction()
+  {
+    $this->view->disable();
+
+    if ($this->request->isPost() == true && $this->request->isAjax() == true) {
+      $firma =  $this->request->get("dataimage");
+      $idPaciente =  $this->request->get("idPaciente");
+      $paciente = Paciente::findFirstByidPaciente($idPaciente);
+      $paciente->firma = $firma;
+      $paciente->save();
+      $this->response->setJsonContent("OK");
+      $this->response->setStatusCode(200, "OK");
+      $this->response->send();
+    }
+  }
 }

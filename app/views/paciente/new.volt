@@ -1,6 +1,7 @@
 <div class="container col-xs-12" style="margin-top:40px;">
   <div>
     {{ form("paciente/create", "method":"post", "autocomplete" : "off", "class" : "form-horizontal") }}
+    {{ hidden_field("codfirma") }}
     <div class="panel panel-default">
       <div class="panel-heading">
         <center><h4>Datos Paciente</h4></center>
@@ -122,6 +123,42 @@
               </div>
             </div>
           </div>
+          <div style="list-style:none; width:100%; display:none" class="col-md-12" id="divfotofirma">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Foto Firma</label>
+                <div class="">
+                  <img src="" class="col-md-6" id="fotofirma" name="fotofirma">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="display:none;">
+            <div class="form-group col-md-12">
+              <label>Firma</label>
+              <div class="input-group">
+                {{ text_field("firma", "class" : "form-control", "id" : "fieldFirma") }}
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button">Firmar</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" name="button" class="btn btn-primary" id="AgregarFirma">Agregar Firma</button>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <div id="canvas" style="display:none; border: 1px solid #c4caac;">
+              <canvas class="roundCorners" id="newSignature"
+              style="width: 1000; height:180;"></canvas>
+            </div>
+          </div>
+          <div class="col-md-12" id="divboton" style="display:none;">
+            <br>
+            <button type="button" name="button" class="btn btn-primary" id="CargarFirma">Cargar Firma Paciente</button>
+            <button type="button" name="button" class="btn btn-danger" id="LimpiarFirma">Limpiar Firma</button>
+          </div>
         </div>
       </div>
       <div class="panel-footer">
@@ -136,7 +173,7 @@
   </form>
 </div>
 </div>
-
+{{ assets.outputJs() }}
 <script type="text/javascript">
 $("#idDepartamento").change(function(){
   var Departamento = $("#idDepartamento option:selected").attr("value");
@@ -150,5 +187,25 @@ $("#idDepartamento").change(function(){
     });
     $('#municipios').html(municipios);
   });
+});
+
+$("#AgregarFirma").click(function(){
+  signatureCapture();
+  $("#canvas").show();
+  $("#divboton").show();
+});
+
+$("#CargarFirma").click(function(e){
+  e.preventDefault();
+  var dataimage = document.getElementById("newSignature").toDataURL("image/png");
+  $("#divfotofirma").show();
+  $("#fotofirma").attr('src', dataimage);
+  $("#codfirma").val(dataimage);
+});
+
+$("#LimpiarFirma").click(function(){
+  var canvas = document.getElementById("newSignature");
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, 1000, 180);
 });
 </script>

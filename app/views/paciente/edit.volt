@@ -1,4 +1,7 @@
 <div class="container col-xs-12" style="margin-top:40px;">
+  <style media="screen">
+
+  </style>
   <div>
     {{ form("paciente/save", "method":"post", "autocomplete" : "off", "class" : "form-horizontal") }}
     {{ hidden_field("idPaciente") }}
@@ -122,16 +125,43 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        {% if firma != "" %}
+        <div style="list-style:none; width:100%" class="col-md-12">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Foto Firma</label>
+              <div class="">
+                <img src="{{firma}}" class="col-md-6">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="col-md-6" style="display:none;">
           <div class="form-group col-md-12">
             <label>Firma</label>
             <div class="input-group">
               {{ text_field("firma", "class" : "form-control", "id" : "fieldFirma") }}
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="AgregarFirma">Agregar Firma</button>
+                <button class="btn btn-primary" type="button">Firmar</button>
               </span>
             </div>
           </div>
+        </div>
+        <div class="col-md-6">
+          <button type="button" name="button" class="btn btn-primary" id="AgregarFirma">Agregar Firma</button>
+        </div>
+        <div class="col-md-12">
+          <br>
+          <div id="canvas" style="display:none; border: 1px solid #c4caac;">
+            <canvas class="roundCorners" id="newSignature"
+            style="width: 1000; height:180;"></canvas>
+          </div>
+        </div>
+        <div class="col-md-12" id="divboton" style="display:none;">
+          <br>
+          <button type="button" name="button" class="btn btn-primary" id="DescargarFirma">Subir Firma Paciente</button>
+          <button type="button" name="button" class="btn btn-danger" id="LimpiarFirma">Limpiar Firma</button>
         </div>
       </div>
     </div>
@@ -156,9 +186,7 @@
         <h4 class="modal-title">Agregar Firma</h4>
       </div>
       <div class="modal-body">
-        <div class="contenedor-firma">
-          <canvas id="canvas" oncontextmenu="WILL.clear(); event.preventDefault();"></canvas>
-        </div>
+
       </div>
     </div>
   </div>
@@ -180,6 +208,15 @@ $("#idDepartamento").change(function(){
 });
 
 $("#AgregarFirma").click(function(){
-  $("#ModalFirma").modal("show");
+  signatureCapture();
+  $("#canvas").show();
+  $("#divboton").show();
 });
+
+$("#LimpiarFirma").click(function(){
+  var canvas = document.getElementById("newSignature");
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, 1000, 180);
+});
+
 </script>

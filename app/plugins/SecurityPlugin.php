@@ -39,6 +39,9 @@ class SecurityPlugin extends Plugin
       ),
       'consultarMunicipios' => array(
         'nivelPermiso' => '0'
+      ),
+      'cargarFirma' => array(
+        'nivelPermiso' => '0'
       )
     ),
     'ortopedista' => array(
@@ -229,6 +232,9 @@ class SecurityPlugin extends Plugin
       ),
       'BuscarDatosActividad' => array(
         'nivelPermiso' => '1'
+      ),
+      'GuardarFirma' => array(
+        'nivelPermiso' => '0'
       ),
     ),
     'valoracion' => array(

@@ -35,6 +35,13 @@ class Actividad extends \Phalcon\Mvc\Model
 
     public $tipo;
 
+    public $firma1;
+    public $firma2;
+    public $firma3;
+    public $firma4;
+    public $firma5;
+    public $firma6;
+
     public function initialize()
     {
         $this->setSchema("cenopdb");
